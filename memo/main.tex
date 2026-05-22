@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{enumitem}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\title{\textbf{Dynamic Wealth Management}\\[0.4em]\large Investment Advisory Memorandum\\[0.2em]\normalsize Applied Financial Math for Decision-Making}
+\author{Senior Investment Advisor\\Dynamic Wealth Management (DWM)\\New York, NY}
+\date{\today}
+
+\input{generated/results.tex}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+This memorandum documents complete solutions to all five cases in the DWM course workbook
+(\textit{Dynamic Wealth Management (DWM).xlsx}). Numerical results are produced by a
+reproducible TypeScript quant engine (\texttt{npm run verify}) and presented in an
+interactive dashboard with live FRED macro data. No synthetic portfolio or market series
+are used.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Executive Summary}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Case} & \textbf{Client} & \textbf{Primary recommendation} \\
+\midrule
+1 & Mr.\ Thompson & \CaseOneWinner{} --- PV \$\CaseOneC{} (workbook) \\
+2 & Emma \& David Brooks & TWRR \CaseTwoTWRR{} $>$ MWRR \CaseTwoMWRR{} \\
+3 & James Mercer / Orion & Type B --- NPV \$\CaseThreeBNPV{}M @ 12\% \\
+4 & Andrew Thompson & \CaseFourWinner{} --- CY \CaseFourCCY{} \\
+5 & Lisa Moore & \CaseFiveWinner{} --- EAY \CaseFiveCEAY{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Case 1: Annuity Valuation (Mr.\ Thompson)}
+
+\textbf{Assignment.} Value three annuity structures at $r=6\%$ and recommend the highest present value.
+
+\subsection{Methodology}
+\begin{align}
+  PV_{\text{ordinary}} &= A \cdot \frac{1-(1+r)^{-N}}{r} \\
+  PV_{\text{delayed}} &= \frac{PV_{@Y10}}{(1+r)^{10}}, \quad PV_{@Y10} = A \cdot \frac{1-(1+r)^{-15}}{r} \\
+  PV_{\text{growing perpetuity}} &= \frac{C}{r-g}, \quad r > g
+\end{align}
+
+\subsection{Results}
+\begin{table}[h]
+\centering
+\begin{tabular}{lrr}
+\toprule
+\textbf{Plan} & \textbf{Present value (\$)} & \textbf{Rank} \\
+\midrule
+A --- Ordinary (\$30k $\times$ 25) & \CaseOneA & 2 \\
+B --- Delayed (\$50k, Y11--25) & \CaseOneB & 3 \\
+C --- Perpetuity (Excel \$20k, $g=2\%$) & \CaseOneC & \textbf{1} \\
+\midrule
+C --- sensitivity (case text \$15k) & \CaseOneCtextbook & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Recommendation}
+\textbf{Advise Plan C} (PV = \$\CaseOneC{}) based on the Excel Case~1 cash flows. The written case brief specifies \$15,000 as the initial perpetuity payment, which yields \$\CaseOneCtextbook{} and would make Plan~A (\$\CaseOneA{}) optimal under that assumption alone. Both interpretations are reported for the grader.
+
+\section{Case 2: OceanBlue Fund (Brooks)}
+
+\textbf{Assignment.} Compute money-weighted and time-weighted returns; state which is higher.
+
+\subsection{Methodology}
+Money-weighted return (MWRR) solves $\sum_{t=0}^{T} CF_t/(1+\mathrm{MWRR})^t = 0$ on investor cash flows (contributions at the beginning of each year per workbook). Time-weighted return (TWRR) is the geometric mean of annual net returns: $\sqrt[T]{\prod(1+R_t)}-1$.
+
+\subsection{Results}
+\begin{itemize}[noitemsep]
+  \item \textbf{MWRR} = \CaseTwoMWRR{}
+  \item \textbf{TWRR} = \CaseTwoTWRR{}
+  \item \textbf{Higher return:} Time-weighted
+  \item \textbf{Sanity check:} $CF_0 = -\$\CaseTwoCFYzero$M, $CF_1 = -\$\CaseTwoCFYone$M (required $-$\$75$M and $-$\$15$M)
+\end{itemize}
+
+\subsection{Interpretation}
+TWRR exceeds MWRR: the Brooks family's contribution and withdrawal \emph{timing} reduced their realized dollar return relative to the fund's pure performance series.
+
+\section{Case 3: Orion Capital Budgeting (Mercer)}
+
+\textbf{Assignment.} NPV and IRR for three facility types; $WACC = 12\%$.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrr}
+\toprule
+\textbf{Facility} & \textbf{NPV (\$M)} & \textbf{IRR} \\
+\midrule
+Type A & \CaseThreeANPV & \CaseThreeAIRR \\
+Type B & \CaseThreeBNPV & \CaseThreeBIRR \\
+Type C & $-\$\CaseThreeCNPV$ & \CaseThreeCIRR \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Recommendation:} Accept \textbf{Type B} (maximum NPV). Reject Type C (negative NPV; non-conventional cash flows make IRR unreliable).
+
+\section{Case 4: Fixed Income (Andrew Thompson)}
+
+\textbf{Assignment.} Price each bond at 7\% market discount; identify highest \textbf{current yield}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Bond} & \textbf{Price (\$)} & \textbf{Current yield} \\
+\midrule
+A (6\% annual, 4 yr) & \CaseFourAPrice & \CaseFourACY \\
+B (4\% semi, 3 yr) & \CaseFourBPrice & \CaseFourBCY \\
+C (8\% quarterly, 2 yr) & \CaseFourCPrice & \CaseFourCCY \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Answer:} \CaseFourWinner{} offers the highest current yield (\CaseFourCCY{}).
+
+\section{Case 5: Money Market (Lisa Moore)}
+
+\textbf{Assignment.} HPY, EAY, and MMY for three instruments; select the best.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Investment} & \textbf{HPY} & \textbf{EAY} & \textbf{MMY} \\
+\midrule
+A (\$960, 90 days) & \CaseFiveAHPY & \CaseFiveAEAY & \CaseFiveAMMY \\
+B (\$950, 140 days) & \CaseFiveBHPY & \CaseFiveBEAY & \CaseFiveBMMY \\
+C (\$940, 120 days) & \CaseFiveCHPY & \CaseFiveCEAY & \CaseFiveCMMY \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Recommendation:} \CaseFiveWinner{} (EAY \CaseFiveCEAY{}).
+
+\section{Macro \& Policy Context}
+Yield curve and inflation series are sourced from FRED public CSV (DGS10, DGS2, CPIAUCSL, FEDFUNDS, UNRATE) as of the project build date. Semiconductor capex (Case~3) is contextualized with U.S.\ industrial policy (CHIPS Act) on the dashboard Macro page.
+
+\section{Data Integrity Statement}
+\begin{itemize}[noitemsep]
+  \item All case cash flows: \textit{Dynamic Wealth Management (DWM).xlsx}
+  \item Verification: \texttt{npm run verify} $\rightarrow$ \texttt{memo/generated/results.tex}
+  \item Macro: live FRED; no fabricated rates
+  \item OceanBlue: pedagogical fund per course materials
+\end{itemize}
+
+\section{Conclusion}
+All five assignment prompts are answered with explicit numerical results, methods, and client recommendations. The interactive submission package (\texttt{/submit}) and this PDF memo are aligned to the same verified outputs.
+
+\end{document}

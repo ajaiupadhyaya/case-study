@@ -1,0 +1,149 @@
+{
+  "source": "Dynamic Wealth Management (DWM).xlsx",
+  "sha256": "cd5b7a8979ee9894",
+  "ingestedAt": "2026-05-22T17:36:08.218Z",
+  "case1": {
+    "rate": 0.06,
+    "planA": {
+      "payment": 30000,
+      "periods": 25
+    },
+    "planB": {
+      "payment": 50000,
+      "delayYears": 10,
+      "periods": 15
+    },
+    "planC": {
+      "firstPayment": 20000,
+      "growth": 0.02,
+      "usePerpetuityFormula": true
+    }
+  },
+  "case2": {
+    "years": [
+      {
+        "year": 1,
+        "aumMn": 75,
+        "netReturn": 0.2
+      },
+      {
+        "year": 2,
+        "aumMn": 105,
+        "netReturn": -0.05
+      },
+      {
+        "year": 3,
+        "aumMn": 55,
+        "netReturn": 0.1
+      },
+      {
+        "year": 4,
+        "aumMn": 65,
+        "netReturn": 0.2
+      },
+      {
+        "year": 5,
+        "aumMn": 85,
+        "netReturn": 0.03
+      }
+    ]
+  },
+  "case3": {
+    "wacc": 0.12,
+    "projects": [
+      {
+        "id": "A",
+        "label": "Type A",
+        "cashFlowsMn": [
+          -9,
+          4,
+          3,
+          3,
+          3,
+          1
+        ]
+      },
+      {
+        "id": "B",
+        "label": "Type B",
+        "cashFlowsMn": [
+          -7,
+          2,
+          3,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "id": "C",
+        "label": "Type C",
+        "cashFlowsMn": [
+          -4.3,
+          10,
+          -6,
+          -2
+        ]
+      }
+    ]
+  },
+  "case4": {
+    "bonds": [
+      {
+        "id": "A",
+        "label": "Bond A",
+        "face": 1000,
+        "annualCouponRate": 0.06,
+        "couponPayment": 60,
+        "years": 4,
+        "couponsPerYear": 1,
+        "discountRate": 0.07
+      },
+      {
+        "id": "B",
+        "label": "Bond B",
+        "face": 1000,
+        "annualCouponRate": 0.04,
+        "couponPayment": 20,
+        "years": 3,
+        "couponsPerYear": 2,
+        "discountRate": 0.07
+      },
+      {
+        "id": "C",
+        "label": "Bond C",
+        "face": 1000,
+        "annualCouponRate": 0.08,
+        "couponPayment": 20,
+        "years": 2,
+        "couponsPerYear": 4,
+        "discountRate": 0.07
+      }
+    ]
+  },
+  "case5": {
+    "instruments": [
+      {
+        "id": "A",
+        "label": "Investment A",
+        "price": 960,
+        "par": 1000,
+        "days": 90
+      },
+      {
+        "id": "B",
+        "label": "Investment B",
+        "price": 950,
+        "par": 1000,
+        "days": 140
+      },
+      {
+        "id": "C",
+        "label": "Investment C",
+        "price": 940,
+        "par": 1000,
+        "days": 120
+      }
+    ]
+  }
+}

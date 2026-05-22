@@ -1,0 +1,14 @@
+{
+  "name": "@dwm/quant",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/vitest/vitest.mjs run 2>/dev/null || node --import tsx/esm src/__tests__/cases.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}

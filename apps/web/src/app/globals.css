@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --ivory: #f7f4ef;
+  --charcoal: #1c1b19;
+  --navy: #0f2744;
+  --gold: #b8956b;
+  --muted: #6b6560;
+  --line: #e8e2d9;
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-charcoal: var(--charcoal);
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --font-serif: var(--font-newsreader);
+  --font-sans: var(--font-source);
+  --font-mono: var(--font-plex);
+}
+
+body {
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-family: var(--font-source), system-ui, sans-serif;
+}
+
+.prose-editorial h1,
+.prose-editorial h2 {
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.chart-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.metric-value {
+  font-family: var(--font-plex), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+@media print {
+  header,
+  footer {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+  .chart-card {
+    break-inside: avoid;
+  }
+}

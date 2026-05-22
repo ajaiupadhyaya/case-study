@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Executive Summary}{2}{section.1}%
+\contentsline {section}{\numberline {2}Case 1: Annuity Valuation (Mr.\ Thompson)}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Methodology}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Results}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Recommendation}{2}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Case 2: OceanBlue Fund (Brooks)}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Methodology}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Results}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Interpretation}{3}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Case 3: Orion Capital Budgeting (Mercer)}{3}{section.4}%
+\contentsline {section}{\numberline {5}Case 4: Fixed Income (Andrew Thompson)}{3}{section.5}%
+\contentsline {section}{\numberline {6}Case 5: Money Market (Lisa Moore)}{3}{section.6}%
+\contentsline {section}{\numberline {7}Macro \& Policy Context}{4}{section.7}%
+\contentsline {section}{\numberline {8}Data Integrity Statement}{4}{section.8}%
+\contentsline {section}{\numberline {9}Conclusion}{4}{section.9}%

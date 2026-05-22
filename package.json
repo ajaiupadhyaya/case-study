@@ -1,0 +1,24 @@
+{
+  "name": "dwm-case-study",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dynamic Wealth Management — Applied Financial Math case study",
+  "scripts": {
+    "ingest": "node scripts/ingest-excel.mjs",
+    "verify": "node scripts/verify-cases.mjs",
+    "fetch:macro": "node scripts/fetch-macro.mjs",
+    "prepare:data": "npm run ingest && npm run fetch:macro && npm run verify",
+    "memo:pdf": "cd memo && latexmk -pdf -interaction=nonstopmode main.tex && cp main.pdf ../apps/web/public/DWM_Investment_Memo.pdf",
+    "dev": "npm run dev --workspace=apps/web",
+    "build": "npm run prepare:data && npm run build --workspace=apps/web",
+    "start": "npm run start --workspace=apps/web",
+    "test": "node scripts/verify-cases.mjs"
+  },
+  "workspaces": [
+    "apps/web",
+    "packages/quant"
+  ],
+  "devDependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
